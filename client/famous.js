@@ -5,6 +5,9 @@ if (Meteor.isClient) {
 	Famous.main(function(){
 		var Engine = require("famous/engine");
 		var Surface = famousHelpers.Surface;
+		var Modifier = require('famous/modifier');
+		var Matrix = require('famous/transform');
+		var EasingCurves = require('famous/transitions/easing');
 
 
 		mainCtx = Engine.createContext();
@@ -16,7 +19,20 @@ if (Meteor.isClient) {
 			data: "Template data"
 		});
 
-		mainCtx.add(surface);
+		// Define Matrix transforms for start/end positions
+		// and an easing curve to transition between them
+		var startPos = Matrix.translate(50,50,0);
+		var endPos = Matrix.translate(200,300,0);
+		var transform = new Modifier({transform: startPos});
+		var easeTransition = { duration: 800, curve: EasingCurves.inOutBackNorm };
+
+		// Apply the transition on click and switch start/end
+		surface.on('click', function(e) {
+			transform.setTransform(endPos, easeTransition);
+			startPos = [endPos, endPos = startPos][0];
+		});
+
+		  mainCtx.add(transform).link(surface);
 	});
 
 	Template.test.text = function() {
