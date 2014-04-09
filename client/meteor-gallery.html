@@ -1,0 +1,34 @@
+<head>
+  <title>meteor-gallery</title>
+</head>
+
+<body>
+	{{> container}}
+</body>
+
+<template name="container">
+	<div class="container" style="-webkit-transform: translate3d({{scrollX}}px,{{scrollY}}px, 0)">
+		{{> gallery}}
+	</div>
+</template>
+
+<template name="gallery">
+  {{#each images}}
+  	{{> image}}
+  {{/each}}
+</template>
+
+<template name="image">
+	<div class="image" style="-webkit-transform: translate3d({{x}}px, {{y}}px, 0)">
+		<div class="title">
+			{{title}}
+		</div>
+		<div class="back">
+			back {{title}}
+		</div>
+  	</div>
+</template>
+
+<template name="test">
+	<p>Surface {{text}}</p>
+</template>
