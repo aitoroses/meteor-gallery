@@ -1,38 +1,29 @@
 <head>
   <title>meteor-gallery</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 
 <body>
-	{{> container}}
 </body>
 
-<template name="container">
-	<div class="container" style="-webkit-transform: translate3d({{scrollX}}px,{{scrollY}}px, 0)">
-		{{> gallery}}
-	</div>
+<template name="leaderboard">
+  <div class="leaderboard">
+  {{#if selected_name}}
+  <div class="details">
+    <div class="name">{{selected_name}}</div>
+    <div class="inc">Give 5 points</div>
+  </div>
+  {{/if}}
+
+  {{#unless selected_name}}
+  <div class="none">Click a player to select</div>
+  {{/unless}}
+  </div>
 </template>
 
-<template name="gallery">
-  {{#each images}}
-  	{{> image}}
-  {{/each}}
-</template>
-
-<template name="image">
-	<div class="image" style="-webkit-transform: translate3d({{x}}px, {{y}}px, 0)">
-		<div class="title">
-			{{title}}
-		</div>
-		<div class="back">
-			back {{title}}
-		</div>
-  	</div>
-</template>
-
-<template name="test">
-		<div class="Rap is asesome">
-			Surface 
-			<p>{{text}}</p>
-			<p>{{this}}</p>
-		</div>
+<template name="player">
+  <div class="player {{selected}}">
+    <span class="name">{{name}}</span>
+    <span class="score">{{score}}</span>
+  </div>
 </template>

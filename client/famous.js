@@ -1,41 +1,70 @@
-if (Meteor.isClient) {
 
-	Session.set("text", "some text");
+Famous.main(function(){
+	var Engine = require('famous/engine');
+  var Surface = famousHelpers.Surface;
+  var Modifier = require('famous/modifier');
+  var Matrix = require('famous/transform');
+  var ScrollView = require('famous/views/scrollview');
+  var HeaderFooterLayout = require('famous/views/header-footer-layout')
+  
+  var mainCtx = Engine.createContext();
+  
+  // Create a 3 horitzontal paned layout
+  layout = new HeaderFooterLayout({
+    headerSize: 0,
+    footerSize: 70
+  });
 
-	Famous.main(function(){
-		var Engine = require("famous/engine");
-		var Surface = famousHelpers.Surface;
-		var Modifier = require('famous/modifier');
-		var Matrix = require('famous/transform');
-		var EasingCurves = require('famous/transitions/easing');
+  // Create a scrollview and array to hold surfaces
+  var scrollView = new ScrollView();
+  var surfaces = [];
 
+  // Create a surface based on data in document
+  function createSurface(doc) {
+    var surface = new Surface({
+      size: [undefined, 50],
+      content: Template.player,
+      classes: ["test-surface"],
+      data: doc,
+      events: {
+      	click: function() {
+		    	Session.set("selected_player", doc._id);
+		    }
+      }
+    });
+    return surface;
+  }
+  
+  // Re-actively maintain the surfaces array as players change.
+  famousHelpers.cursorToArray(
+    Players.find({}, {sort: {score: -1, name: 1}}),
+    surfaces,
+    createSurface
+  );
 
-		mainCtx = Engine.createContext();
+  // Include the surfaces in the scrollview and pipe
+  // events to it from the engine
+  scrollView.sequenceFrom(surfaces);
+  Engine.pipe(scrollView);
 
-		var surface = new Surface({
-			size: [100, 100],
-			classes: ["test-surface"],
-			content: Template.test,
-			data: "Template data"
-		});
+  // Link the scrollview to the layout and add the footer
 
-		// Define Matrix transforms for start/end positions
-		// and an easing curve to transition between them
-		var startPos = Matrix.translate(50,50,0);
-		var endPos = Matrix.translate(200,300,0);
-		var transform = new Modifier({transform: startPos});
-		var easeTransition = { duration: 800, curve: EasingCurves.inOutBackNorm };
+  var leaderboardSurface = new Surface({
+    size: [undefined, 70],
+    content: Template.leaderboard,
+    classes: ['footer'],
+    rendered: function(tmpl) {
+    	tmpl.click(function(e){
+    		if($(e.target).hasClass("inc")) {
+    			Players.update(Session.get("selected_player"), {$inc: {score: 5}});
+    		}
+    	});
+    }
+  });
 
-		// Apply the transition on click and switch start/end
-		surface.on('click', function(e) {
-			transform.setTransform(endPos, easeTransition);
-			startPos = [endPos, endPos = startPos][0];
-		});
+  layout.id.content.link(scrollView);
+  layout.id.footer.link(leaderboardSurface);
 
-		  mainCtx.add(transform).link(surface);
-	});
+  mainCtx.link(layout);
 
-	Template.test.text = function() {
-		return Session.get("text");
-	}
-}
+});
