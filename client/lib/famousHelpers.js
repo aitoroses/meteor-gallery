@@ -2,7 +2,7 @@ famousHelpers = {}
 
 var createSurface = function(s) {
 
-	var Surface = require("famous/surface");
+	var Surface = require("famous/core/Surface");
 
 	var r;
 	if (s.data) {

@@ -1,11 +1,11 @@
 
-Famous.main(function(){
-	var Engine = require('famous/engine');
+Meteor.startup(function(){
+  var Engine = require('famous/core/Engine');
   var Surface = famousHelpers.Surface;
-  var Modifier = require('famous/modifier');
-  var Matrix = require('famous/transform');
-  var ScrollView = require('famous/views/scrollview');
-  var HeaderFooterLayout = require('famous/views/header-footer-layout')
+  var Modifier = require('famous/core/Modifier');
+  var Matrix = require('famous/core/Transform');
+  var ScrollView = require('famous/views/Scrollview');
+  var HeaderFooterLayout = require('famous/views/HeaderFooterLayout');
   
   var mainCtx = Engine.createContext();
   
@@ -62,9 +62,10 @@ Famous.main(function(){
     }
   });
 
-  layout.id.content.link(scrollView);
-  layout.id.footer.link(leaderboardSurface);
+  layout.content.add(scrollView);
+  layout.footer.add(leaderboardSurface);
 
-  mainCtx.link(layout);
+  mainCtx.add(layout);
 
 });
+

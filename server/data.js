@@ -20,7 +20,8 @@ if (Meteor.isServer) {
     names = names.concat(names);
     names = names.concat(names);
 
-    for (var i = 0; i < names.length; i++)
+    for (var i = 0; i < names.length; i++) {
       Players.insert({name: names[i], score: Math.floor(Random.fraction()*10)*5});
-  });
+    };
+ });
 }
