@@ -1,0 +1,44 @@
+{
+  "builtBy": "meteor/10",
+  "sliceDependencies": {
+    "browser.json": {
+      "files": {
+        "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous/package.js": "654fd2092959eb88910335daeab93ec0e0c245f2",
+        "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous/include.js": "a2ce263ccbd5f144a2887832b356358ba8ec6830",
+        "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous/build.css": "5b80f7b54c835aaf44a239ea688be70b4806e460",
+        "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous/famousHelpers.js": "e242621a190f7898d3f62d7e9eb66098ad1283f7",
+        "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous/build.js": "dd1b4bbc079d1642c786174dfdf3e9d2c096325e"
+      },
+      "directories": []
+    },
+    "os.json": {
+      "files": {
+        "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous/package.js": "654fd2092959eb88910335daeab93ec0e0c245f2"
+      },
+      "directories": []
+    },
+    "tests.browser.json": {
+      "files": {
+        "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous/package.js": "654fd2092959eb88910335daeab93ec0e0c245f2"
+      },
+      "directories": []
+    },
+    "tests.os.json": {
+      "files": {
+        "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous/package.js": "654fd2092959eb88910335daeab93ec0e0c245f2"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous/package.js": "654fd2092959eb88910335daeab93ec0e0c245f2"
+    },
+    "directories": []
+  },
+  "pluginProviderPackages": {
+    "famous": "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous",
+    "meteor": "/Users/aitoroses/.meteor/packages/meteor/8e32057b0d"
+  },
+  "source": "/Users/aitoroses/Documents/Projects/meteor/Famous/meteor-gallery/packages/famous"
+}

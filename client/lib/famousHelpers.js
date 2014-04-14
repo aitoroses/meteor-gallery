@@ -4,7 +4,16 @@ var createSurface = function(s) {
 
 	var Surface = require("famous/core/Surface");
 
+  var surface;
+  
+  if (typeof s.content == "string") {
+    return new Surface(s);
+  }
+
+  // Else we should return a reactive Meteor fragment
 	var r;
+  // Just render using Meteor UI
+  // Accepts data and it's reactive
 	if (s.data) {
 		r = UI.renderWithData(s.content, s.data);
 	} else {
@@ -12,6 +21,8 @@ var createSurface = function(s) {
 	}
 	htmlNodes = r.dom.getNodes();
 	var node;
+  // If there are 3 nodes, they should be 2 text nodes on the boundaries
+  // But in reality we only need the middle one
 	if (htmlNodes.length == 3) {
 		node = r.dom.members[1];
 	} else {
@@ -20,10 +31,14 @@ var createSurface = function(s) {
 			node.appendChild(htmlNodes[i]);
 		}
 	}
+
+  // -- We also can use the UI packages insert method to append the template,
+  // -- but for now gonna keep like this
   // var node = document.createElement("div");
   // UI.insert(r, node);
 
-	var surface = new Surface({
+  // Create a Famo.us Surface using Meteors rendered node
+	surface = new Surface({
 		size: s.size,
 		classes: s.classes,
 		content: node

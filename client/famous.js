@@ -65,7 +65,18 @@ Meteor.startup(function(){
   layout.content.add(scrollView);
   layout.footer.add(leaderboardSurface);
 
+  var test = new Surface({
+    size: [200, 200],
+    properties: {
+      backgroundColor: "gray",
+      textAlign: "center",
+      lineHeight: "200px",
+    },
+    content: "Surface test"
+  });
+
   mainCtx.add(layout);
+  mainCtx.add(test);
 
 });
 

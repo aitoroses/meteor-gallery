@@ -2,15 +2,13 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "famono": {
-        "version": "0.0.7"
-      }
+      "famono": {}
     },
     "packages": {
       "famono": {
         "git": "https://github.com/raix/Meteor-famono.git",
-        "tag": "v0.0.7",
-        "commit": "e92a3c2b5a8596c139dee332c925363bbb0d0290"
+        "tag": "v0.0.13",
+        "commit": "55175cc6146f09eb7194e01fdb0ccca58b66654e"
       }
     }
   }

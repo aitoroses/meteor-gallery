@@ -1,0 +1,46 @@
+{
+  "format": "unipackage-slice-pre1",
+  "packageVariables": [
+    {
+      "name": "Famous",
+      "export": true
+    },
+    {
+      "name": "famousHelpers",
+      "export": true
+    },
+    {
+      "name": "htmlNodes"
+    }
+  ],
+  "uses": [
+    {
+      "package": "meteor"
+    }
+  ],
+  "resources": [
+    {
+      "type": "css",
+      "file": "browser/packages/famous/build.css",
+      "length": 1365,
+      "offset": 0,
+      "servePath": "/packages/famous/build.css"
+    },
+    {
+      "type": "asset",
+      "file": "browser/packages/famous/build.js",
+      "length": 264376,
+      "offset": 0,
+      "servePath": "/packages/famous/build.js",
+      "path": "build.js"
+    },
+    {
+      "type": "prelink",
+      "file": "browser/packages/famous.js",
+      "length": 8560,
+      "offset": 0,
+      "servePath": "/packages/famous.js",
+      "sourceMap": "browser/packages/famous.js.map"
+    }
+  ]
+}
