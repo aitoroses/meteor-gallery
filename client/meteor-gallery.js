@@ -3,6 +3,8 @@
 
 Players = new Meteor.Collection("players");
 
+Session.set("title", "Header");
+
 Template.leaderboard.players = function () {
   return Players.find({}, {sort: {score: -1, name: 1}});
 };
@@ -15,3 +17,7 @@ Template.leaderboard.selected_name = function () {
 Template.player.selected = function () {
   return Session.equals("selected_player", this._id) ? "selected" : '';
 };
+
+Template.headerTemplate.title = function() {
+  return Session.get("title");
+}

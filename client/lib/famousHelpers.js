@@ -41,6 +41,7 @@ var createSurface = function(s) {
 	surface = new Surface({
 		size: s.size,
 		classes: s.classes,
+    properties: s.properties,
 		content: node
 	});
 

@@ -2,18 +2,19 @@
 Meteor.startup(function(){
   var Engine = require('famous/core/Engine');
   var Surface = famousHelpers.Surface;
+  var ContainerSurface = require("famous/surfaces/ContainerSurface");
   var Modifier = require('famous/core/Modifier');
   var Matrix = require('famous/core/Transform');
+  var EasingCurves = require('famous/transitions/Easing');
   var ScrollView = require('famous/views/Scrollview');
   var HeaderFooterLayout = require('famous/views/HeaderFooterLayout');
-  var Draggable = require('famous/modifiers/Draggable');
   var FastClick = require("famous/inputs/FastClick");
   
   var mainCtx = Engine.createContext();
   
   // Create a 3 horitzontal paned layout
   layout = new HeaderFooterLayout({
-    headerSize: 0,
+    headerSize: 70,
     footerSize: 70
   });
 
@@ -64,32 +65,68 @@ Meteor.startup(function(){
     }
   });
 
-  layout.content.add(scrollView);
-  layout.footer.add(leaderboardSurface);
-
-  // A draggable surface
-  var size = 100;
-  var draggable = new Draggable( {
-    snapX: 1, 
-    snapY: 1, 
-    xRange: [0, window.innerWidth-size],
-    yRange: [0, window.innerHeight-size],
+  var headerSurface = new Surface({
+    size: [undefined, 70],
+    content: Template.headerTemplate,
+    classes: ["header"],
+    properties: {
+      textAlign: "center",
+      lineHeight: 70 + "px",
+      fontSize: "32px",
+      backgroundColor: "rgb(255, 73, 73)",
+      color: "white",
+      fontFamily: "Sans-Serif"
+    },
   });
 
-  var test = new Surface({
-    size: [size, size],
+  // Create a slider surface with a scrollview 
+  //and some elements
+
+  var sliderBtn = new Surface({
+    content: "<button>menu</button>"
+  });
+  sliderSize = 200;
+  var slider = new Surface({
+    size: [sliderSize, window.innerHeight],
     properties: {
       backgroundColor: "gray",
       textAlign: "center",
-      lineHeight: size+"px",
     },
-    content: "Drag test"
+    content: "Slider"
   });
 
-  test.pipe(draggable);
+  var sliderStartPos = Matrix.translate(-sliderSize,0,0);
+  var sliderEndPos = Matrix.translate(0,0,0);
+  var headerStartPos = Matrix.translate(0,0,0);
+  var headerEndPos = Matrix.translate(sliderSize,0,0);
+  var sliderModifier = new Modifier({
+    transform: sliderStartPos
+  });
+  var headerModifier = new Modifier({
+    transform: headerStartPos
+  });
+  var easeTransition = { duration: 400, curve: EasingCurves.inOutBackNorm };
+  var fastEaseTransition = { duration: 400, curve: EasingCurves.inOutBackNorm };
+  
+  sliderBtn.on("click", function(){
+    sliderModifier.setTransform(sliderEndPos, fastEaseTransition);
+    headerModifier.setTransform(headerEndPos, easeTransition);
+    sliderStartPos = [sliderEndPos, sliderEndPos = sliderStartPos][0];
+    headerStartPos = [headerEndPos, headerEndPos = headerStartPos][0];
+  });
+
+  var headerContainer = new ContainerSurface({
+    size: [undefined, 70]
+  });
+  headerContainer.add(headerSurface);
+  headerContainer.add(sliderBtn);
+
+  layout.header.add(headerModifier).add(headerContainer);
+  layout.content.add(scrollView);
+  layout.footer.add(leaderboardSurface);
 
   mainCtx.add(layout);
-  mainCtx.add(draggable).add(test);
+  mainCtx.add(sliderModifier).add(slider);
 
 });
 
