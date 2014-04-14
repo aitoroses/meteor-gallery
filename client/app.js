@@ -1,6 +1,4 @@
-Scenes = {}
 
-// Famous.main(function(){
 Scenes.home = function() {
 
 	var Engine = require('famous/engine');
@@ -14,8 +12,8 @@ Scenes.home = function() {
   
   // Create a 3 horitzontal paned layout
   layout = new HeaderFooterLayout({
-    headerSize: 0,
-    footerSize: 70
+    headerSize: 70,
+    footerSize: 0
   });
 
   // Create a scrollview and array to hold surfaces
@@ -52,38 +50,26 @@ Scenes.home = function() {
 
   // Link the scrollview to the layout and add the footer
 
-  var leaderboardSurface = new Surface({
+  var HeaderSurface = new Surface({
     size: [undefined, 70],
     content: Template.leaderboard,
     classes: ['footer'],
-    rendered: function(tmpl) {
-    	tmpl.click(function(e){
-    		if($(e.target).hasClass("inc")) {
-    			Players.update(Session.get("selected_player"), {$inc: {score: 5}});
-    		}
-    	});
-    }
   });
 
+  // Menu icon Surface
+
+  // var ImageSurface = require("famous/surface");
+
+  // var MenuIcon = new ImageSurface({
+  //   size: [200, 200],
+  //   content: '<img src="http://www.tuexperto.com/wp-content/uploads/2013/02/chrome.jpg">'
+  // });
+
+  //HeaderSurface.add(MenuIcon);
+
   layout.id.content.link(scrollView);
-  layout.id.footer.link(leaderboardSurface);
+  layout.id.header.link(HeaderSurface);
 
   mainCtx.link(layout);
 
 };
-
-Scenes.test = function() {
-  var Engine = require('famous/engine');
-  var Surface = require('famous/surface');
-  var Modifier = require('famous/modifier');
-
-  var mainCtx = Engine.createContext();
-
-  var surface = new Surface({
-    size: [200, 200],
-    content: "<p>Surface</p>",
-    classes: ["test-surface"],
-  });
-
-  mainCtx.add(new Modifier({origin : [.5,.5]})).link(surface);
-}
