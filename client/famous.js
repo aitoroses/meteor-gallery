@@ -6,6 +6,8 @@ Meteor.startup(function(){
   var Matrix = require('famous/core/Transform');
   var ScrollView = require('famous/views/Scrollview');
   var HeaderFooterLayout = require('famous/views/HeaderFooterLayout');
+  var Draggable = require('famous/modifiers/Draggable');
+  var FastClick = require("famous/inputs/FastClick");
   
   var mainCtx = Engine.createContext();
   
@@ -65,18 +67,29 @@ Meteor.startup(function(){
   layout.content.add(scrollView);
   layout.footer.add(leaderboardSurface);
 
+  // A draggable surface
+  var size = 100;
+  var draggable = new Draggable( {
+    snapX: 1, 
+    snapY: 1, 
+    xRange: [0, window.innerWidth-size],
+    yRange: [0, window.innerHeight-size],
+  });
+
   var test = new Surface({
-    size: [200, 200],
+    size: [size, size],
     properties: {
       backgroundColor: "gray",
       textAlign: "center",
-      lineHeight: "200px",
+      lineHeight: size+"px",
     },
-    content: "Surface test"
+    content: "Drag test"
   });
 
+  test.pipe(draggable);
+
   mainCtx.add(layout);
-  mainCtx.add(test);
+  mainCtx.add(draggable).add(test);
 
 });
 
