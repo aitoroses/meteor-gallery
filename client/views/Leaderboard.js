@@ -1,6 +1,6 @@
-define("views/Leaderboard", function(require, exports, module) {
+define("app/Leaderboard", function(require, exports, module) {
 
-  var Surface = require("meteor/helpers/Surface");
+  var Surface = require("famono/util/Surface");
 
   var leaderboardSurface = new Surface({
     size: [undefined, 70],

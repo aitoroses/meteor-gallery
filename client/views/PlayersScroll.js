@@ -1,10 +1,10 @@
 
-define("views/PlayersScroll", function(require, exports, module) {
+define("app/PlayersScroll", function(require, exports, module) {
 
-  var Engine = require("famous/core/Engine");
-  var Surface = require("meteor/helpers/Surface");
-  var ScrollView = require('famous/views/Scrollview');
-  var CursorToArray = require("meteor/helpers/CursorToArray");
+  var Engine        = require("famous/core/Engine");
+  var Surface       = require("famono/util/Surface");
+  var ScrollView    = require('famous/views/Scrollview');
+  var CursorToArray = require("famono/util/CursorToArray");
 
 
   // Create a scrollview and array to hold surfaces

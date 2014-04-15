@@ -1,7 +1,7 @@
 // -- meteor/helpers/Surface: Wrapper around Famous Surfaces that accepts templates, rendered callback, data context and so on
 // -- meteor/helpers/CursorToArray: Cursor to array reactive mapper
 
-define("meteor/helpers/Surface", function(require,exports,module) {
+define("famono/util/Surface", function(require,exports,module) {
 
   var createSurface = function(s) {
 
@@ -69,7 +69,7 @@ define("meteor/helpers/Surface", function(require,exports,module) {
 
 });
 
-define("meteor/helpers/CursorToArray", function(require,exports,module) {
+define("famono/util/CursorToArray", function(require,exports,module) {
 
   var cursorToArray = function(cursor, data, createFn) {
     cursor.observe({

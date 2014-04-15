@@ -1,10 +1,10 @@
-define("views/Header", function(require, exports, module) {
+define("app/Header", function(require, exports, module) {
 
-  var Surface = require("meteor/helpers/Surface");
-  var ContainerSurface = require("famous/surfaces/ContainerSurface");
-  var Modifier = require('famous/core/Modifier');
-  var Matrix = require('famous/core/Transform');
-  var EasingCurves = require('famous/transitions/Easing');
+  var Surface           = require("famono/util/Surface");
+  var ContainerSurface  = require("famous/surfaces/ContainerSurface");
+  var Modifier          = require('famous/core/Modifier');
+  var Matrix            = require('famous/core/Transform');
+  var EasingCurves      = require('famous/transitions/Easing');
 
   var headerSurface = new Surface({
     size: [undefined, 70],
