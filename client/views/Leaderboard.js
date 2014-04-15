@@ -1,6 +1,6 @@
 define("views/Leaderboard", function(require, exports, module) {
 
-  Surface = famousHelpers.Surface;
+  var Surface = require("meteor/helpers/Surface");
 
   var leaderboardSurface = new Surface({
     size: [undefined, 70],

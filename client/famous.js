@@ -1,11 +1,8 @@
 
+// Famous application main logic
+
 Meteor.startup(function(){
   var Engine = require('famous/core/Engine');
-  var Surface = famousHelpers.Surface;
-  var ContainerSurface = require("famous/surfaces/ContainerSurface");
-  var Modifier = require('famous/core/Modifier');
-  var Matrix = require('famous/core/Transform');
-  var EasingCurves = require('famous/transitions/Easing');
   var HeaderFooterLayout = require('famous/views/HeaderFooterLayout');
   var FastClick = require("famous/inputs/FastClick");
 

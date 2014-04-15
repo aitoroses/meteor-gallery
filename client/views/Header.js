@@ -1,6 +1,6 @@
 define("views/Header", function(require, exports, module) {
 
-  var Surface = famousHelpers.Surface;
+  var Surface = require("meteor/helpers/Surface");
   var ContainerSurface = require("famous/surfaces/ContainerSurface");
   var Modifier = require('famous/core/Modifier');
   var Matrix = require('famous/core/Transform');

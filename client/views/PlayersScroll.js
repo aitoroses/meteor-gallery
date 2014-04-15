@@ -2,8 +2,9 @@
 define("views/PlayersScroll", function(require, exports, module) {
 
   var Engine = require("famous/core/Engine");
-  var Surface = famousHelpers.Surface;
+  var Surface = require("meteor/helpers/Surface");
   var ScrollView = require('famous/views/Scrollview');
+  var CursorToArray = require("meteor/helpers/CursorToArray");
 
 
   // Create a scrollview and array to hold surfaces
@@ -27,7 +28,7 @@ define("views/PlayersScroll", function(require, exports, module) {
   }
   
   // Re-actively maintain the surfaces array as players change.
-  famousHelpers.cursorToArray(
+  CursorToArray(
     Players.find({}, {sort: {score: -1, name: 1}}),
     surfaces,
     createSurface
