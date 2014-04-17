@@ -27,3 +27,12 @@
 	text-align: center;
 	margin: auto;
 }
+
+.on {
+	background: #FF4444;
+}
+
+.off {
+	background: #666666;
+
+}
