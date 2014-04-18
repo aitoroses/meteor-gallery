@@ -9,7 +9,7 @@ Meteor.startup(function(){
 
   var mainCtx = Engine.createContext();
   
-  toggleButton = new ToggleButton({
+  var toggleButton = new ToggleButton({
     onContent: "ON",
     offContent: "OFF",
     size: [200, 200],
