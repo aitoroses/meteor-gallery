@@ -4,19 +4,20 @@
 Meteor.startup(function(){
   var Engine       = require('famous/core/Engine');
   var Modifier     = require("famous/core/Modifier");
+  var Transform    = require("famous/core/Transform");
   var FastClick    = require("famous/inputs/FastClick");
-  var ToggleButton  = require("app/views/ToggleButton");
+
+  var HeaderComponent = require("iOS/HeaderComponent");
 
   var mainCtx = Engine.createContext();
   
-  var toggleButton = new ToggleButton({
-    onContent: "ON",
-    offContent: "OFF",
-    size: [200, 200],
+  header = new HeaderComponent({
+    content: "Header"
   });
 
+  mainCtx.add(header);
 
-  mainCtx.add(new Modifier({origin:[.5,.5]})).add(toggleButton);
+  //mainCtx.add(new Modifier({origin:[.5,.5]})).add();
 
 });
 
